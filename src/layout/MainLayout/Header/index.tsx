@@ -1,0 +1,87 @@
+// material-ui
+import { Avatar, Box, ButtonBase } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+// assets
+import { IconMenu2 } from "@tabler/icons";
+// project imports
+import LogoSection from "../LogoSection";
+import MobileSection from "./MobileSection";
+import ProfileSection from "./ProfileSection";
+
+// ==============================|| MAIN NAVBAR / HEADER ||============================== //
+
+export interface HeaderProps {
+  handleLeftDrawerToggle: () => void;
+}
+
+const Header = ({ handleLeftDrawerToggle }: HeaderProps) => {
+  const theme = useTheme();
+
+  return (
+    <>
+      {/* logo & toggler button */}
+      <Box
+        sx={{
+          width: 228,
+          display: "flex",
+          [theme.breakpoints.down("md")]: {
+            width: "auto",
+          },
+        }}
+      >
+        <Box
+          component="span"
+          sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}
+        >
+          <LogoSection />
+        </Box>
+        {/* <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
+          <Avatar
+            variant="rounded"
+            sx={{
+              ...theme.typography.commonAvatar,
+              ...theme.typography.mediumAvatar,
+              transition: "all .2s ease-in-out",
+              background:
+                theme.palette.mode === "dark"
+                  ? theme.palette.dark.main
+                  : theme.palette.secondary.light,
+              color:
+                theme.palette.mode === "dark"
+                  ? theme.palette.secondary.main
+                  : theme.palette.secondary.dark,
+              "&:hover": {
+                background:
+                  theme.palette.mode === "dark"
+                    ? theme.palette.secondary.main
+                    : theme.palette.secondary.dark,
+                color:
+                  theme.palette.mode === "dark"
+                    ? theme.palette.secondary.light
+                    : theme.palette.secondary.light,
+              },
+            }}
+            onClick={handleLeftDrawerToggle}
+            color="inherit"
+          >
+            <IconMenu2 stroke={1.5} size="1.3rem" />
+          </Avatar>
+        </ButtonBase> */}
+      </Box>
+      <Box sx={{ flexGrow: 1 }} />
+
+      {/* live customization & localization */}
+      {/* <Box sx={{ display: { xs: "none", sm: "block" }, marginRight: 3 }}>
+        <LocalizationSection />
+      </Box> */}
+      <ProfileSection />
+
+      {/* mobile header */}
+      <Box sx={{ display: { xs: "block", sm: "none" } }}>
+        <MobileSection />
+      </Box>
+    </>
+  );
+};
+
+export default Header;

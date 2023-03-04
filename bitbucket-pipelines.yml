@@ -1,0 +1,24 @@
+image: python:3.6
+ 
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Test
+          script:
+            - sleep 1          
+    develop:
+      - step:
+          name: Test
+          script:
+            - ssh mpower@123.200.18.24 "/home/mpower/ansible-virtualenv/bin/ansible-playbook  -i /home/mpower/ansible-virtualenv/inventory  /home/mpower/Traumalink/traumalink-dev-front.yml" 
+    qa:
+      - step:
+          name: Test
+          script:
+            - sleep 1
+    demo:
+      - step:
+          name: Test
+          script:
+            - ssh mpower@123.200.18.24 "/home/mpower/ansible-virtualenv/bin/ansible-playbook -i /home/mpower/ansible-virtualenv/inventory /home/mpower/Traumalink/traumalink-demo-front.yml"
